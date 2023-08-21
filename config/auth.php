@@ -7,9 +7,13 @@ return [
     | Authentication Defaults
     |--------------------------------------------------------------------------
     |
-    | This option controls the default authentication "guard" and password
+    |   This option controls the default authentication "guard" and password
     | reset options for your application. You may change these defaults
     | as required, but they're a perfect start for most applications.
+
+        Opsi ini mengontrol "penjaga" otentikasi default dan kata sandi
+    | mengatur ulang opsi untuk aplikasi Anda. Anda dapat mengubah default ini
+    | sesuai kebutuhan, tetapi ini adalah awal yang sempurna untuk sebagian besar aplikasi.
     |
     */
 
@@ -33,6 +37,15 @@ return [
     |
     | Supported: "session"
     |
+        Selanjutnya, Anda dapat menentukan setiap penjaga autentikasi untuk aplikasi Anda.
+    | Tentu saja, konfigurasi default yang bagus telah ditentukan untuk Anda
+    | di sini yang menggunakan penyimpanan sesi dan penyedia pengguna Eloquent.
+    |
+    | Semua driver autentikasi memiliki penyedia pengguna. Ini mendefinisikan bagaimana
+    | pengguna sebenarnya diambil dari database Anda atau penyimpanan lain
+    | mekanisme yang digunakan oleh aplikasi ini untuk mempertahankan data pengguna Anda.
+    |
+    | Didukung: "sesi"
     */
 
     'guards' => [
@@ -47,7 +60,7 @@ return [
     | User Providers
     |--------------------------------------------------------------------------
     |
-    | All authentication drivers have a user provider. This defines how the
+    |   All authentication drivers have a user provider. This defines how the
     | users are actually retrieved out of your database or other storage
     | mechanisms used by this application to persist your user's data.
     |
@@ -57,6 +70,15 @@ return [
     |
     | Supported: "database", "eloquent"
     |
+    |   Semua driver autentikasi memiliki penyedia pengguna. Ini mendefinisikan bagaimana
+    | pengguna sebenarnya diambil dari database Anda atau penyimpanan lain
+    | mekanisme yang digunakan oleh aplikasi ini untuk mempertahankan data pengguna Anda.
+    |
+    | Jika Anda memiliki banyak tabel atau model pengguna, Anda dapat mengonfigurasi banyak
+    | sumber yang mewakili masing-masing model/tabel. Sumber-sumber ini mungkin kemudian
+    | ditugaskan ke penjaga autentikasi tambahan yang telah Anda tetapkan.
+    |
+    | Didukung: "database", "fasih"
     */
 
     'providers' => [
@@ -88,6 +110,17 @@ return [
     | generating more password reset tokens. This prevents the user from
     | quickly generating a very large amount of password reset tokens.
     |
+    | Anda dapat menentukan beberapa konfigurasi pengaturan ulang kata sandi jika Anda memiliki lebih banyak
+    | dari satu tabel atau model pengguna dalam aplikasi dan Anda ingin memilikinya
+    | pisahkan pengaturan pengaturan ulang kata sandi berdasarkan jenis pengguna tertentu.
+    |
+    | Waktu kedaluwarsa adalah jumlah menit setiap token reset
+    | dianggap sah. Fitur keamanan ini membuat token berumur pendek
+    | mereka memiliki lebih sedikit waktu untuk ditebak. Anda dapat mengubah ini sesuai kebutuhan.
+    |
+    | Pengaturan throttle adalah jumlah detik yang harus ditunggu pengguna sebelumnya
+    | menghasilkan lebih banyak token pengaturan ulang kata sandi. Ini mencegah pengguna dari
+    | dengan cepat menghasilkan token pengaturan ulang kata sandi dalam jumlah yang sangat besar.
     */
 
     'passwords' => [
@@ -108,6 +141,9 @@ return [
     | times out and the user is prompted to re-enter their password via the
     | confirmation screen. By default, the timeout lasts for three hours.
     |
+    | Di sini Anda dapat menentukan jumlah detik sebelum konfirmasi kata sandi
+    | waktu habis dan pengguna diminta untuk memasukkan kembali kata sandi mereka melalui
+    | layar konfirmasi. Secara default, batas waktu berlangsung selama tiga jam.
     */
 
     'password_timeout' => 10800,
