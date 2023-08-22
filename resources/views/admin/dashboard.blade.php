@@ -39,12 +39,13 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
+    {{-- sidebar --}}
     <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
-        <div class="sidenav-header">
+        <div class="sidenav-header d-block">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             {{-- <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html " target="_blank"> --}}
                 <img src="{{ asset('img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-                <span class="ms-1 font-weight-bold">Soft UI Dashboard || {{ $title }}</span>
+                <span class="ms-1 font-weight-bold">BMT-APP | {{ $title }}</span>
             </a>
         </div>
         <hr class="horizontal dark mt-0">
@@ -220,7 +221,7 @@
                 </li>
             </ul>
         </div>
-        <div class="sidenav-footer mx-3 ">
+        {{-- <div class="sidenav-footer mx-3 ">
             <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
                 <div class="full-background" style="background-image: url('{{ asset('img/curved-images/white-curved.jpg') }}')"></div>
                 <div class="card-body text-start p-3 w-100">
@@ -233,7 +234,7 @@
                         <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard" target="_blank" class="btn btn-white btn-sm w-100 mb-0">Documentation</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             {{-- <a class="btn bg-gradient-primary mt-3 w-100" href="https://www.creative-tim.com/product/soft-ui-dashboard-pro?ref=sidebarfree">Upgrade to pro</a> --}}
         </div>
     </aside>
@@ -244,9 +245,9 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item text-sm text-dark text-monospace active" aria-current="page">{{ $title }}</li>
                     </ol>
-                    <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+                    <h6 class="font-weight-bolder mb-0">{{ $title }}</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -1259,7 +1260,7 @@
     <!-- Github buttons -->
     {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    {{-- <script src="{{ asset('js/soft-ui-dashboard.min.js') }}?v=1.0.7"></script> --}}
+    <script src="{{ asset('js/soft-ui-dashboard.min.js') }}"></script>
 </body>
 
 </html>
