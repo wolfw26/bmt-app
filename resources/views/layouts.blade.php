@@ -54,7 +54,7 @@
         </div>
 
     </main>
-    {{-- <x-fixed-plugin /> --}}
+    <x-fixed-plugin />
 
 
 
