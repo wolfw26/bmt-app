@@ -4,6 +4,7 @@ use App\Http\Livewire\Pages\Tables;
 use App\Http\Livewire\Admin\Karyawan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\DataAdmin;
+use App\Http\Livewire\Admin\Jabatan;
 
 // ADMIN
 
@@ -12,6 +13,7 @@ Route::get('/', function () {
 })->name('beranda');
 
 Route::get('/karyawan', Karyawan::class)->name('admin.karyawan');
+Route::get('/jabatan', Jabatan::class)->name('admin.jabatan');
 Route::get('/data_admin', DataAdmin::class)->name('admin.dataadmin');
 
 

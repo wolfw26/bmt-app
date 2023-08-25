@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('jabatan');
             $table->text('deskripsi')->nullable();
+            $table->String('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

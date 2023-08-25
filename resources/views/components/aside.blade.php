@@ -19,7 +19,8 @@
                     Master Data
                 </button>
                 <ul class="dropdown-menu position-absolute" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item {{ request()->routeIs('admin.dataadmin') ? ' bg-secondary text-white border-radius-2xl' : '' }}" href="{{ route('admin.dataadmin') }} " href="{{ route('admin.dataadmin') }}">Admin</a></li>
+                    <li><a class="dropdown-item {{ request()->routeIs('admin.dataadmin') ? ' bg-secondary text-white ' : '' }} border-radius-2xl" href="{{ route('admin.dataadmin') }} ">Admin</a></li>
+                    <li><a class="dropdown-item {{ request()->routeIs('admin.jabatan') ? ' bg-secondary text-white ' : '' }} border-radius-2xl" href="{{ route('admin.jabatan') }} ">Jabatan</a></li>
                     <li><a class="dropdown-item border-radius-2xl " href="#">Karyawan</a></li>
                     <li><a class="dropdown-item border-radius-2xl" href="#">Peserta</a></li>
                     <li><a class="dropdown-item border-radius-2xl" href="#">Ruang</a></li>

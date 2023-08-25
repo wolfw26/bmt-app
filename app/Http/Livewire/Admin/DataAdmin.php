@@ -8,6 +8,6 @@ class DataAdmin extends Component
 {
     public function render()
     {
-        return view('livewire.admin.data-admin')->extends('layouts',['title' => 'DATA ADMIN']);
+        return view('livewire.admin.data-admin')->extends('layouts', ['title' => 'DATA ADMIN']);
     }
 }
