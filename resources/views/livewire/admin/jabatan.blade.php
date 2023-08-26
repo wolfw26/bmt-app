@@ -1,11 +1,17 @@
 <div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 col-12">
+            <div class="col-md-4 col-12 d-flex justify-content-evenly">
+
+                @if ($showJabatanTrashed)
+                    <button wire:click="backToJabatan" class="btn btn-sm bg-gradient-faded-light"><i class=" font-weight-bolder">Back</i></button>
+                @else
                 <!-- Button trigger modal -->
                 <button wire:click="modalType('add', null)" type="button" class="btn btn-primary btn-sm px-2" data-bs-toggle="modal" data-bs-target="#staticBackdropadd">
                     Tambah jabatan
                 </button>
+                    <button wire:click="showTrashed" class="btn btn-sm bg-gradient-faded-light"><i class=" font-weight-bolder">Trased</i></button>
+                @endif
             </div>
         </div>
     </div>
@@ -16,12 +22,12 @@
                     <div class="card-header">
                         <h3 class=" text-center">JABATAN</h3>
                     </div>
+                    @if ($showJabatanTrashed)
+                        @livewire('admin.jabatan-trased')
+                    @else
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="max-height: calc(200vh);">
                             @if (count($selectedItems) > 0)
-                            @foreach ( $selectedItems as $sd )
-                            {{ $sd }}
-                            @endforeach
                             <div class="fixed-bottom bg-transparent p-3 d-flex justify-content-center">
                                 <div class=" mx-2">
                                     <button class="btn btn-sm bg-gradient-danger" wire:click="deleteSelected">Delete Selected</button>
@@ -67,6 +73,7 @@
                             </table>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -83,23 +90,23 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                        <form wire:submit.prevent="submitForm">
-                            <div class="form-group">
-                                <label class="form-control-label">Jabatan</label>
-                                <input wire:model="jabatan"  type="text" class="form-control form-control-sm @error('jabatan') is-invalid @enderror">
-                                @error('jabatan') <span class="error">{{ $message }}</span> @enderror
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label">Deskripsi</label>
-                                <input wire:model="deskripsi"  type="text" class="form-control form-control-sm @error('deskripsi') is-invalid @enderror">
-                                @error('deskripsi') <span class="error">{{ $message }}</span> @enderror
-                            </div>
-                            <div class="modal-footer mt-2">
-                        <button type="button" class="btn bg-gradient-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-sm bg-gradient-primary text-capitalize">{{ $modal }}</button>
+                    <form wire:submit.prevent="submitForm">
+                        <div class="form-group">
+                            <label class="form-control-label">Jabatan</label>
+                            <input wire:model="jabatan" type="text" class="form-control form-control-sm @error('jabatan') is-invalid @enderror">
+                            @error('jabatan') <span class="error">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Deskripsi</label>
+                            <input wire:model="deskripsi" type="text" class="form-control form-control-sm @error('deskripsi') is-invalid @enderror">
+                            @error('deskripsi') <span class="error">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="modal-footer mt-2">
+                            <button type="button" class="btn bg-gradient-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-sm bg-gradient-primary text-capitalize">{{ $modal }}</button>
 
-                    </div>
-                        </form>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

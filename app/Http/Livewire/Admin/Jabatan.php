@@ -7,18 +7,32 @@ use Livewire\Component;
 
 class Jabatan extends Component
 {
+    public $showJabatanTrashed = false;
     public $modal = '';
     public $selectAll = false;
     public $selectedItems = [];
     public $data;
-    public $jabatan;
-    public $deskripsi;
-    public $idJabatan;
+    public $jabatan,$deskripsi,$idJabatan;
 
+
+// Validasi
     protected $rules = [
         'jabatan' => 'required',
         'deskripsi' => 'required',
     ];
+
+// Kontrol Button Trased
+    public function showTrashed()
+    {
+        $this->showJabatanTrashed = true;
+    }
+
+    public function backToJabatan()
+    {
+        $this->showJabatanTrashed = false;
+    }
+
+// Kontrol modal untuk edit / Tambah
     public function modalType($type, $id)
     {
         $this->modal = $type;
@@ -32,6 +46,8 @@ class Jabatan extends Component
             $this->deskripsi = '';
         }
     }
+
+// panggil fungsi sesuai jenis modal yang di buka
     public function submitForm()
     {
         if ($this->modal === 'add') {
@@ -40,6 +56,8 @@ class Jabatan extends Component
             $this->ubah();
         }
     }
+
+// Kontrol Seleksi data dari checklist
     public function UpdateselectAll()
     {
         if ($this->selectAll) {
@@ -48,6 +66,8 @@ class Jabatan extends Component
             $this->selectedItems = [];
         }
     }
+
+// Fungsi Update Status
     public function updateStatus($status)
     {
         Jb::whereIn('id', $this->selectedItems)->update(['status' => $status]);
@@ -59,6 +79,8 @@ class Jabatan extends Component
         $this->selectedItems = [];
         $this->refreshData();
     }
+
+//Hapus 1 atau lebih Data
     public function deleteSelected()
     {
         $deletedItems = Jb::whereIn('id', $this->selectedItems)->get();
@@ -66,10 +88,13 @@ class Jabatan extends Component
         $deletedCount = $deletedItems->count();
 
         foreach ($deletedItems as $item) {
-            $itemInfo[] = $item->jabatan; // Ubah ini sesuai dengan kolom yang ingin Anda tampilkan
-        }
+            $itemInfo[] = $item->jabatan;
 
-        Jb::whereIn('id', $this->selectedItems)->forceDelete();
+            $item->status = "non-active";
+            $item->save();
+        }
+        // Kode delete dengan softDelete
+        Jb::whereIn('id', $this->selectedItems)->delete();
 
         if ($deletedCount > 0) {
             $deletedList = implode(', ', $itemInfo);
@@ -86,6 +111,8 @@ class Jabatan extends Component
     {
         $this->validateOnly($propertyName);
     }
+
+// Fungsi Tambah Data
     public function create()
     {
 
@@ -97,8 +124,10 @@ class Jabatan extends Component
         $data->save();
         toastr()->success('Data has been saved successfully!');
         $this->resetFields();
-        $this->data = Jb::all();
+        $this->data = Jb::latest()->get();
     }
+
+// Fungsi Ubah Data
     public function ubah()
     {
         $this->validate();
@@ -108,14 +137,17 @@ class Jabatan extends Component
         $data->save();
         toastr()->success('Data has been updated successfully!');
         $this->resetFields();
-        $this->data = Jb::all();
+        $this->data = Jb::latest()->get();
     }
+
+// Tools dan Pemanggilan Data Dari DB:
     public function mount()
     {
-        $this->data = Jb::All();
+        $this->data = Jb::latest()->get();
     }
     public function render()
     {
+        $this->data = Jb::latest()->get();
         return view('livewire.admin.jabatan')->extends('layouts', ['title' => 'JABATAN']);
     }
     private function resetFields()
@@ -126,7 +158,7 @@ class Jabatan extends Component
     }
     private function refreshData()
     {
-        $this->data = Jb::all();
+        $this->data = Jb::latest()->get();
         $this->selectAll = False;
         $this->selectedItems = [];
     }
