@@ -4,17 +4,26 @@
         <p class="mb-0 text-center">Gunakan Email dan Password untuk Log in</p>
     </div>
     <div class="card-body pb-3">
-        <form wire:submit.prevent="register">
+        <form wire:submit.prevent="Login">
             <label>Email</label>
-            <div class="input-group mb-3">
-                <input wire:model="email" type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+            <div class="input-group mb-0">
+                <input wire:model="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
             </div>
+            @error('email') <i class="error font-italic text-danger">*{{  __($message) }}</i> @enderror
             <label>Password</label>
-            <div class="input-group mb-3">
-                <input wire:model="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+            <div class="input-group mb-0">
+                <input wire:model.live="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
             </div>
+            @error('password') <i class="error font-italic text-danger">*{{  $message }}</i> @enderror
             <div class="text-center">
-                <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Masuk</button>
+                <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0 @if (strlen($password) < 6) disabled @endif " wire:loading.attr="disabled">
+                    <span wire:loading.remove>{{ __('Log in') }}</span>
+                    <span wire:loading>
+                        <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </span>
+                </button>
             </div>
         </form>
     </div>

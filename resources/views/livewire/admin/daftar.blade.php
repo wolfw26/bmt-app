@@ -5,17 +5,21 @@
     </div>
     <div class="card-body pb-3">
         <form wire:submit.prevent="register">
+            @csrf
             <label>Name</label>
             <div class="input-group mb-3">
                 <input wire:model="name" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="name-addon">
+                @error('name') <span class="error">{{ $message }}</span> @enderror
             </div>
             <label>Email</label>
             <div class="input-group mb-3">
                 <input wire:model="email" type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                @error('email') <span class="error">{{ $message }}</span> @enderror
             </div>
             <label>Password</label>
             <div class="input-group mb-3">
                 <input wire:model="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                @error('password') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="text-center">
                 <button type="submit" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Daftar</button>
@@ -25,7 +29,7 @@
     <div class="card-footer text-center pt-0 px-sm-4 px-1">
         <p class="mb-4 mx-auto">
             Sudah Memiliki Akun?
-            <a href="{{ route('login') }}" class="text-primary text-gradient font-weight-bold">Masuk</a>
+            <a href="{{ route('adm.login') }}" class="text-primary text-gradient font-weight-bold">Masuk</a>
         </p>
     </div>
 </div>

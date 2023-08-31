@@ -29,7 +29,30 @@ return [
     */
 
     'disks' => [
-
+        'peserta_foto' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/peserta/foto'),
+            'url' => env('APP_URL') . '/storage/peserta/foto',
+            'visibility' => 'public',
+        ],
+        'peserta_foto_ktp' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/peserta/foto_ktp'),
+            'url' => env('APP_URL') . '/storage/peserta/foto_ktp',
+            'visibility' => 'public',
+        ],
+        'karyawan_foto' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/karyawan/foto'),
+            'url' => env('APP_URL') . '/storage/karyawan/foto',
+            'visibility' => 'public',
+        ],
+        'karyawan_fotoKTP' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/karyawan/fotoKTP'),
+            'url' => env('APP_URL') . '/storage/karyawan/fotoKTP',
+            'visibility' => 'public',
+        ],
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -39,7 +62,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],

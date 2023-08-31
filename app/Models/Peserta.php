@@ -13,7 +13,7 @@ class Peserta extends Model
     use HasFactory;
 
     protected $table = 'peserta';
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
 
     public function pesertaJabatan()
     {
@@ -21,7 +21,7 @@ class Peserta extends Model
     }
     public function pesertaUser()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'users_id', 'id');
     }
 
     public function pesertaDoc()

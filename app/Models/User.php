@@ -52,6 +52,6 @@ class User extends Authenticatable
     }
     public function userPeserta()
     {
-        return $this->hasOne(Peserta::class);
+        return $this->hasOne(Peserta::class, 'users_id', 'id');
     }
 }

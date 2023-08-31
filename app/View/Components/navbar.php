@@ -3,8 +3,10 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class navbar extends Component
 {
@@ -15,6 +17,13 @@ class navbar extends Component
     public function __construct($title)
     {
         $this->title = $title;
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return Redirect::route('adm.login'); // Redirect to your desired route after logout
     }
 
     /**
