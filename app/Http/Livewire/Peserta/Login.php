@@ -26,7 +26,6 @@ class Login extends Component
         if (Auth::attempt($valid)) {
             session()->regenerate();
             $this->resetData();
-            toastr()->success('Berhasil login');
             return redirect()->route('peserta.home');
         }
 

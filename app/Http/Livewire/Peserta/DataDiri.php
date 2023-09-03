@@ -6,6 +6,7 @@ use App\Models\Peserta;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class DataDiri extends Component
@@ -41,7 +42,7 @@ class DataDiri extends Component
 
         // Simpan foto baru jika diunggah
         if ($this->fotoUp) {
-            $fotoPath = $this->fotoUp->store( null, 'peserta_foto');
+            $fotoPath = $this->fotoUp->store(null, 'peserta_foto');
             $data['foto'] = 'storage/peserta/foto/' . $fotoPath;
 
             // Hapus foto lama jika ada
@@ -50,7 +51,7 @@ class DataDiri extends Component
 
         // Simpan foto KTP baru jika diunggah
         if ($this->foto_ktpUp) {
-            $fotoKTPPath = $this->foto_ktpUp->store( null, 'peserta_foto_ktp');
+            $fotoKTPPath = $this->foto_ktpUp->store(null, 'peserta_foto_ktp');
             $data['foto_ktp'] = 'storage/peserta/foto_ktp/' . $fotoKTPPath;
 
             // Hapus foto KTP lama jika ada
@@ -62,9 +63,14 @@ class DataDiri extends Component
 
         if (Peserta::where('users_id', $this->user)->exists()) {
             $peserta = Peserta::where('users_id', $this->user)->first();
-            $peserta->update($data);
-            toastr()->success('Data Berhasil diubah');
-            $this->resetData();
+            if (Gate::authorize('updatePeserta', $peserta)) {
+                $peserta->update($data);
+                toastr()->success('Data Berhasil diubah');
+                $this->resetData();
+            } else {
+                toastr()->warning('Anda Tidak Memiliki Ijin untuk melakukan Perubahan Data ini !!');
+                $this->resetData();
+            }
         } else {
             $data['users_id'] = $this->user;
             $save = Peserta::create($data);
@@ -90,8 +96,7 @@ class DataDiri extends Component
         // @dd($this->peserta);
         $this->user = Auth::user()->id;
         return view('livewire.peserta.data-diri')
-            ->extends('laypeserta', ['title' => 'DATA DIRI'])
-            ->section('content');
+            ->extends('laypeserta', ['title' => 'DATA DIRI']);
     }
 
     private function resetData()

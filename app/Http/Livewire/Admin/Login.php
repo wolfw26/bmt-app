@@ -29,8 +29,7 @@ class Login extends Component
         if (Auth::attempt($credentials)) {
             session()->regenerate();
             $this->resetData();
-            toastr()->success('Berhasil login');
-            return redirect()->route('admin.jabatan');
+            return redirect()->route('admin.beranda');
         }
 
         toastr()->warning('Email atau kata sandi yang diberikan tidak cocok dengan data kami.');

@@ -11,7 +11,7 @@ class DocPeserta extends Model
     use HasFactory;
 
     protected $table = 'doc_peserta';
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
 
 
     public function docPeserta()

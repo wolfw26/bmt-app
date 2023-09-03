@@ -11,6 +11,8 @@ use App\Http\Livewire\Peserta\Daftar;
 use App\Http\Livewire\Peserta\Login;
 use App\Http\Livewire\Admin\Daftar as admDaftar;
 use App\Http\Livewire\Admin\Login as admLogin;
+use App\Http\Livewire\Admin\MasterAdmin;
+use App\Http\Livewire\Admin\Profil;
 use App\Http\Livewire\Peserta\DataDiri;
 use App\Http\Livewire\Peserta\Home;
 
@@ -28,10 +30,11 @@ Route::get('/logout', [logout::class, 'logout'])->name('logout');
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/a', function () {
         return view('livewire.admin.beranda', ['title' => 'ADMIN']);
-    })->name('beranda');
+    })->name('admin.beranda');
     Route::get('/a/karyawan', Karyawan::class)->name('admin.karyawan');
     Route::get('/a/jabatan', Jabatan::class)->name('admin.jabatan');
-    Route::get('/a/data_admin', DataAdmin::class)->name('admin.dataadmin');
+    Route::get('/a/data_admin', MasterAdmin::class)->name('admin.dataadmin');
+    Route::get('/a/profil', Profil::class)->name('admin.profil');
     Route::get('/a/tables', Tables::class)->name('tables');
     Route::get('/a/billing', function () {
         return view('livewire.admin.beranda', ['title' => 'BILLING']);

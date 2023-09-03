@@ -1,17 +1,17 @@
 <aside class="sidenav  navbar  navbar-vertical navbar-expand-xs border-0 border-radius-xl fixed-start my-3 ms-3 " id="sidenav-main">
-    <div class="sidenav-header d-block">
+    <div class="sidenav-header d-blok text-center">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
         {{-- <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html " target="_blank"> --}}
         <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">BMT-APP | {{ $title }}</span> <br>
-        <h5 class="text-primary text-center">{{ Auth::user()->name }}</h5>
+        <span class="ms-1 font-weight-bold mb-3">BMT-APP </span> <br>
         </a>
+        <i class="text-secondary text-center disabled mt-3 mx-md-3">{{ Auth::user()->email }}</i>
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link  {{ request()->routeIs('beranda') ? ' active' : '' }}" href="{{ route('beranda') }}">
+                <a class="nav-link  {{ request()->routeIs('admin.beranda') ? ' active' : '' }}" href="{{ route('admin.beranda') }}">
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>

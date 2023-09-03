@@ -29,6 +29,18 @@ return [
     */
 
     'disks' => [
+        'admin_foto' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/admin/foto'),
+            'url' => env('APP_URL') . '/storage/admin/foto',
+            'visibility' => 'public',
+        ],
+        'admin_foto_ktp' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/admin/foto_ktp'),
+            'url' => env('APP_URL') . '/storage/admin/foto_ktp',
+            'visibility' => 'public',
+        ],
         'peserta_foto' => [
             'driver' => 'local',
             'root' => storage_path('app/public/peserta/foto'),

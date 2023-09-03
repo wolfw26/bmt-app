@@ -10,7 +10,7 @@ class DataUsers extends Model
 {
     use HasFactory;
     protected $table = 'data_users';
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
 
 
     public function dataUsersDoc()

@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function userData()
     {
-        return $this->hasOne(DataUsers::class);
+        return $this->hasOne(DataUsers::class, 'users_id', 'id');
     }
     public function userPeserta()
     {

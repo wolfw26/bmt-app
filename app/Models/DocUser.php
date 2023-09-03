@@ -11,7 +11,7 @@ class DocUser extends Model
     use HasFactory;
 
     protected $table = 'doc_users';
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
 
 
     public function docDataUser()

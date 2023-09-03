@@ -17,7 +17,11 @@ class RoleMiddleware
     {
         if (auth()->check() && in_array(auth()->user()->role, $roles)) {
             return $next($request);
+            toastr()->success('BERHASIL, Selamat Datang');
         }
-        abort(403, 'Unauthorized action.');
+
+        auth()->logout();
+        toastr()->warning('Role anda tidak cocok');
+        return redirect()->route('login');
     }
 }
